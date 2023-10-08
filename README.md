@@ -47,12 +47,12 @@ vue inspect > output.js
 * 應用在html標籤上取得的是真實DOM元素，應用在元件標籤上是元件實例物件（vc）
 * 使用方式：
 * 打標識：
-     
+
 ```html
 <h1 ref="xxx">.....</h1>
-``` 
+```
 
-* 或 
+* 或
 
 ```html
 <School ref="xxx"></School>
@@ -63,3 +63,43 @@ vue inspect > output.js
 ```js
 this.$refs.xxx
 ```
+
+## props設定項
+
+1. 功能：讓元件接收外部傳過來的數據
+
+2. 傳遞資料：
+
+```html
+<Demo name="xxx"/>
+```
+
+3. 接收資料：
+
+     * 第一種方式（只接收）：
+
+     ```js
+     props:['name'] 
+     ```
+
+     * 第二種方式（限制型別）：
+
+     ```js
+     props:{
+        name: String
+     }
+     ```
+
+     * 第三種方式（限制類型、限制必要性、指定預設值）：
+
+    ```js
+    props:{
+        name:{
+            type: String, //類型
+            required: true, //必要性
+            default: '老王' //預設值
+        }
+    }
+    ```
+
+     > 備註：props是唯讀的，Vue底層會監測你對props的修改，如果進行了修改，就會發出警告，若業務需求確實需要修改，那麼請複製props的內容到data中一份，然後去 修改data中的資料。
