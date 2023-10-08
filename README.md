@@ -131,3 +131,34 @@ this.$refs.xxx
      ```js
      mixins:['xxx'] 
      ```
+
+## 插件
+
+1. 功能：用於增強Vue
+
+2. 本質：包含install方法的一個對象，install的第一個參數是Vue，第二個以後的參數是插件使用者傳遞的資料。
+
+3. 定義插件：
+
+     ```js
+     物件.install = function (Vue, options) {
+         // 1. 新增全域過濾器
+         Vue.filter(....)
+    
+         // 2. 新增全域指令
+         Vue.directive(....)
+    
+         // 3. 設定全域混入(合)
+         Vue.mixin(....)
+    
+         // 4. 新增實例方法
+         Vue.prototype.$myMethod = function () {...}
+         Vue.prototype.$myProperty = xxxx
+     }
+     ```
+
+4. 使用外掛程式：
+
+```js
+Vue.use()
+```
