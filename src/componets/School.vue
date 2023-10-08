@@ -1,8 +1,8 @@
 <!-- eslint-disable vue/multi-word-component-names -->
 <template>
   <div>
-    <h2 @click="showName">學生姓名: {{ name }}</h2>
-    <h2>學生性別: {{ sex }}</h2>
+    <h2 @click="showName">學校名稱: {{ name }}</h2>
+    <h2>學生地址: {{ address }}</h2>
   </div>
 </template>
 
@@ -10,11 +10,11 @@
 import { mixin,mixin2 } from '@/mixin';
 export default {
   // eslint-disable-next-line vue/multi-word-component-names
-  name: "Student",
+  name: "School",
   data() {
     return {
-      name: "Dennis",
-      sex: "男",
+      name: "台灣大學",
+      address: "台北",
     };
   },
   mixins: [mixin,mixin2]
