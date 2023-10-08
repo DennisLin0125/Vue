@@ -162,3 +162,12 @@ this.$refs.xxx
 ```js
 Vue.use()
 ```
+
+## scoped樣式
+
+1. 作用：讓樣式在局部生效，防止衝突。
+2. 寫法：
+
+```css
+<style scoped>
+```

@@ -1,8 +1,9 @@
 <!-- eslint-disable vue/multi-word-component-names -->
 <template>
-  <div class="demo">
+  <div>
     <h2>學生姓名: {{ name }}</h2>
     <h2>學生性別: {{ sex }}</h2>
+    <input type="text" v-fbind:value="name">
   </div>
 </template>
 
@@ -18,9 +19,3 @@ export default {
   },
 };
 </script>
-
-<style scoped>
-  .demo {
-    background-color: orange;
-  }
-</style>
