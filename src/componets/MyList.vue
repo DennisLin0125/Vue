@@ -1,7 +1,12 @@
 <!-- eslint-disable vue/multi-word-component-names -->
 <template>
   <ul class="todo-main">
-    <MyItem v-for="todoObj in todos" v-bind:key="todoObj.id" v-bind:todoObj="todoObj"/>
+    <MyItem 
+      v-for="todoObj in todos" 
+      :key="todoObj.id" 
+      :todoObj="todoObj" 
+      :checkTodo="checkTodo"
+    />
   </ul>
 </template>
 
@@ -12,7 +17,7 @@ export default {
   components: {
     MyItem
   },
-  props:['todos']
+  props:['todos','checkTodo']
 }
 </script>
 

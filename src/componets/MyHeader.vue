@@ -1,7 +1,12 @@
 <!-- eslint-disable vue/multi-word-component-names -->
 <template>
   <div class="todo-header">
-    <input v-model="title" type="text" placeholder="請輸入你的任務名稱，按Enter鍵確認" @keyup.enter="add" />
+    <input 
+      v-model="title" 
+      type="text" 
+      placeholder="請輸入你的任務名稱，按Enter鍵確認" 
+      @keyup.enter="add" 
+    />
   </div>
 </template>
 
@@ -27,7 +32,7 @@ export default {
         title: this.title,
         done: false
       }
-      
+
       this.addTodo(todoObj)
       this.title = ''
     }

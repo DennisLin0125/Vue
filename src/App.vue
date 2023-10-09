@@ -2,8 +2,8 @@
   <div id="root">
     <div class="todo-container">
       <div class="todo-wrap">
-        <MyHeader :addTodo="addTodo"/>
-        <MyList :todos="todos"/>
+        <MyHeader :addTodo="addTodo" />
+        <MyList :todos="todos" :checkTodo="checkTodo"/>
         <MyFooter />
       </div>
     </div>
@@ -34,10 +34,20 @@ export default {
     }
   },
   methods: {
+    // 添加一個todoObj
     addTodo(todoObj) {
-      console.log('app組件收到來自MyHeader的訊息:',todoObj)
+      console.log('app組件收到來自MyHeader的訊息:', todoObj)
       this.todos.unshift(todoObj)
       console.log('添加完成')
+    },
+    // 勾選或取消一個todo
+    checkTodo(id) {
+      console.log('app組件收到來自MyItem的所選id:', id)
+      this.todos.forEach((todo) => {
+        if (todo.id === id) {
+          todo.done = ! todo.done
+        }
+      })
     }
   },
 }
