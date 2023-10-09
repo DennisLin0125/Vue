@@ -2,8 +2,8 @@
   <div id="root">
     <div class="todo-container">
       <div class="todo-wrap">
-        <MyHeader />
-        <MyList />
+        <MyHeader :addTodo="addTodo"/>
+        <MyList :todos="todos"/>
         <MyFooter />
       </div>
     </div>
@@ -22,7 +22,24 @@ export default {
     MyHeader,
     MyList,
     MyFooter
-  }
+  },
+  data() {
+    return {
+      todos: [
+        { id: '001', title: '吃飯', done: true },
+        { id: '002', title: '睡覺', done: false },
+        { id: '003', title: '打程式', done: true },
+        { id: '004', title: '看書', done: false }
+      ]
+    }
+  },
+  methods: {
+    addTodo(todoObj) {
+      console.log('app組件收到來自MyHeader的訊息:',todoObj)
+      this.todos.unshift(todoObj)
+      console.log('添加完成')
+    }
+  },
 }
 </script>
 

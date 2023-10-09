@@ -1,13 +1,38 @@
 <!-- eslint-disable vue/multi-word-component-names -->
 <template>
   <div class="todo-header">
-    <input type="text" placeholder="請輸入你的任務名稱，按Enter鍵確認" />
+    <input v-model="title" type="text" placeholder="請輸入你的任務名稱，按Enter鍵確認" @keyup.enter="add" />
   </div>
 </template>
 
 <script>
+import { nanoid } from 'nanoid'
 export default {
-  name: 'MyHeader'
+  name: 'MyHeader',
+  data() {
+    return {
+      // 用於獲取輸入框的訊息
+      title: ''
+    }
+  },
+  methods: {
+    add() {
+
+      if (!this.title.trim()) {
+        return alert('請輸入任務')
+      }
+
+      const todoObj = {
+        id: nanoid(),
+        title: this.title,
+        done: false
+      }
+      
+      this.addTodo(todoObj)
+      this.title = ''
+    }
+  },
+  props: ['addTodo'],
 }
 </script>
 
