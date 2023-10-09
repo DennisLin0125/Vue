@@ -3,9 +3,19 @@
   <li>
     <label>
       <input type="checkbox" :checked="todoObj.done" @change="handleCheck(todoObj.id)" />
-      <span>{{ todoObj.title }}</span>
+      <span v-show="!todoObj.isEdit">
+        {{ todoObj.title }}
+      </span>
+      <input 
+        type="text" 
+        v-show="todoObj.isEdit" 
+        :value="todoObj.title" 
+        @blur="handleBlur(todoObj,$event)"
+        ref="inputTitle"
+      >
     </label>
     <button class="btn btn-danger" @click="handleDelete(todoObj.id)">删除</button>
+    <button v-show="!todoObj.isEdit" class="btn btn-edit" @click="handleEdit(todoObj)">編輯</button>
   </li>
 </template>
 
@@ -27,6 +37,25 @@ export default {
         // 觸發綁定事件
         this.$bus.$emit('deleteTodo', id)
       }
+    },
+    handleEdit(todoObj) {
+      if (Object.prototype.hasOwnProperty.call(todoObj, 'isEdit')) {
+        todoObj.isEdit = true;
+      } else {
+        this.$set(todoObj, 'isEdit', true);
+      }
+      // 等DOM都更新完,再去呼叫此函數來,獲取焦點
+      this.$nextTick(function(){
+        this.$refs.inputTitle.focus() 
+      })
+    },
+    // 失去消息回調
+    handleBlur(todoObj,event) {
+      todoObj.isEdit = false
+      if (!event.target.value) {
+        return alert('輸入不能為空')
+      }
+      this.$bus.$emit('updateTodo',todoObj.id,event.target.value)
     }
   }
 }

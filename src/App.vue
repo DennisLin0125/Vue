@@ -3,8 +3,8 @@
     <div class="todo-container">
       <div class="todo-wrap">
         <MyHeader :addTodo="addTodo" />
-        <MyList :todos="todos"/>
-        <MyFooter :todos="todos" :checkAllTodo="checkAllTodo" :clearAllTodo="clearAllTodo"/>
+        <MyList :todos="todos" />
+        <MyFooter :todos="todos" :checkAllTodo="checkAllTodo" :clearAllTodo="clearAllTodo" />
       </div>
     </div>
   </div>
@@ -77,17 +77,26 @@ export default {
         return !todo.done
       })
       console.log('清除完成')
+    },
+    updateTodo(id, title) {
+      this.todos.forEach((todo) => {
+        if (todo.id == id) {
+          todo.title = title
+        }
+      })
     }
   },
   mounted() {
     // 綁定自定義事件
-    this.$bus.$on('checkTodo',this.checkTodo)
-    this.$bus.$on('deleteTodo',this.deleteTodo)
+    this.$bus.$on('checkTodo', this.checkTodo)
+    this.$bus.$on('deleteTodo', this.deleteTodo)
+    this.$bus.$on('updateTodo', this.updateTodo)
   },
   beforeDestroy() {
     // 解綁自定義事件
     this.$bus.$off('checkTodo')
     this.$bus.$off('deleteTodo')
+    this.$bus.$off('updateTodo')
   }
 }
 </script>
@@ -109,6 +118,13 @@ body {
   cursor: pointer;
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05);
   border-radius: 4px;
+}
+
+.btn-edit {
+  color: #fff;
+  background-color: skyblue;
+  border: 1px solid rgb(78, 125, 144);
+  margin-right: 5px;
 }
 
 .btn-danger {
