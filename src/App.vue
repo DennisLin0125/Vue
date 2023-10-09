@@ -1,18 +1,14 @@
 <template>
   <div>
-    
+    <testVm/>
   </div>
 </template>
 
 <script>
-  export default {
-    name: 'App',
-    components: {
-
-    }
-  }
+import testVm from './components/testVm.vue'
+export default {
+  name: 'App',
+  components: {testVm}
+}
 </script>
 
-<style>
-
-</style>
