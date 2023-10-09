@@ -7,6 +7,7 @@
 </template>
 
 <script>
+import pubSub from 'pubsub-js'
 export default {
     // eslint-disable-next-line vue/multi-word-component-names
     name: 'School',
@@ -16,15 +17,16 @@ export default {
             address: '台北',
         }
     },
+    methods: {
+        mySubscriber(msg, data) {
+            console.log(msg, data);
+        }
+    },
     mounted() {
-        // 綁定自定義事件
-        this.$bus.$on('hello', (data) => {
-            console.log('我是School組件，收到了數據', data)
-        })
+        this.token = pubSub.subscribe('hello',this.mySubscriber)
     },
     beforeDestroy() {
-        // 移除綁定自定義
-        this.$bus.$off('hello')
+        pubSub.unsubscribe(this.token);
     },
 }
 </script>

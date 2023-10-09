@@ -9,6 +9,7 @@
 
 
 <script>
+import pubSub from 'pubsub-js'
 export default {
     // eslint-disable-next-line vue/multi-word-component-names
     name: 'Student',
@@ -23,8 +24,7 @@ export default {
     },
     methods: {
         sendStudentName() {
-            // 觸發自定義綁定事件
-            this.$bus.$emit('hello', this.name)
+            pubSub.publish('hello',666)
         }
     },
 }
