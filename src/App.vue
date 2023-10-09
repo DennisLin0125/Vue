@@ -3,8 +3,8 @@
     <div class="todo-container">
       <div class="todo-wrap">
         <MyHeader :addTodo="addTodo" />
-        <MyList :todos="todos" :checkTodo="checkTodo" :deleteTodo="deleteTodo"/>
-        <MyFooter :todos="todos"/>
+        <MyList :todos="todos" :checkTodo="checkTodo" :deleteTodo="deleteTodo" />
+        <MyFooter :todos="todos" :checkAllTodo="checkAllTodo" :clearAllTodo="clearAllTodo"/>
       </div>
     </div>
   </div>
@@ -50,12 +50,33 @@ export default {
         }
       })
     },
+    // 刪除一個todo
     deleteTodo(id) {
       console.log('app組件收到來自MyItem的刪除id:', id)
       this.todos = this.todos.filter((todo) => {
         return todo.id !== id;
       })
       console.log('刪除完成')
+    },
+    // 全選或取消全選
+    checkAllTodo(done) {
+      console.log('app組件收到來自MyFooter的check:', done)
+      if (done == true) {
+        console.log('全選完成')
+      } else {
+        console.log('取消全選')
+      }
+      this.todos.forEach(todo => {
+        todo.done = done
+      })
+    },
+    // 清除所有已完成的
+    clearAllTodo() {
+      console.log('app組件收到來自MyFooter的清除全選指令')
+      this.todos = this.todos.filter((todo) => {
+        return !todo.done
+      })
+      console.log('清除完成')
     }
   },
 }
