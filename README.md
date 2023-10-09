@@ -1,10 +1,6 @@
 # Vue封裝的過度與動畫
 
-1. 作用：在插入、更新或移除 DOM元素時，在適當的時候為元素添加樣式類別名稱。
-
-2. 圖示：<img src="https://img04.sogoucdn.com/app/a/100520146/5990c1dff7dc7a8fb3b34b4462bd0105" style="width:60%" />
-
-3. 寫法：
+* 作用：在插入、更新或移除 DOM元素時，在適當的時候為元素添加樣式類別名稱。
 
 ## 準備好樣式：
 
@@ -19,11 +15,12 @@
 * `v-leave-to`：離開的終點
 
 2. 使用
+
 ```vue
 <transition>
 ```
 
-# 包裹要過度的元素，並配置name屬性：
+## 包裹要過度的元素，並配置name屬性：
 
 ```vue
 <transition name="hello">
@@ -31,4 +28,4 @@
 </transition>
 ```
 
-3. 備註：若有多個元素需要過度，則需要使用：`<transition-group>`，且每個元素都要指定`key`值。
+## 備註：若有多個元素需要過度，則需要使用：`<transition-group>`，且每個元素都要指定`key`值。
