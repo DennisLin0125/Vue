@@ -9,18 +9,24 @@
       />
       <span>{{ todoObj.title }}</span>
     </label>
-    <button class="btn btn-danger" style="display:none">删除</button>
+    <button class="btn btn-danger" @click="handleDelete(todoObj.id)">删除</button>
   </li>
 </template>
 
 <script>
 export default {
   name: 'MyItem',
-  props:['todoObj','checkTodo'],
+  props:['todoObj','checkTodo','deleteTodo'],
   methods: {
     handleCheck(id) {
       console.log('獲取所選到的id:',id)
       this.checkTodo(id)
+    },
+    handleDelete(id) {
+      if (confirm('確定刪除嗎?')) {
+        console.log('獲取想刪除的id:',id)
+      }
+      this.deleteTodo(id)
     }
   }
 }
@@ -60,5 +66,13 @@ li:before {
 
 li:last-child {
   border-bottom: none;
+}
+
+li:hover {
+  background-color: #ddd;
+}
+
+li:hover button{
+  display: block;
 }
 </style>

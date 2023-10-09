@@ -3,7 +3,7 @@
     <div class="todo-container">
       <div class="todo-wrap">
         <MyHeader :addTodo="addTodo" />
-        <MyList :todos="todos" :checkTodo="checkTodo"/>
+        <MyList :todos="todos" :checkTodo="checkTodo" :deleteTodo="deleteTodo"/>
         <MyFooter />
       </div>
     </div>
@@ -45,9 +45,17 @@ export default {
       console.log('app組件收到來自MyItem的所選id:', id)
       this.todos.forEach((todo) => {
         if (todo.id === id) {
-          todo.done = ! todo.done
+          todo.done = !todo.done
+          console.log('勾選或取消完成')
         }
       })
+    },
+    deleteTodo(id) {
+      console.log('app組件收到來自MyItem的刪除id:', id)
+      this.todos = this.todos.filter((todo) => {
+        return todo.id !== id;
+      })
+      console.log('刪除完成')
     }
   },
 }
