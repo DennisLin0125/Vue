@@ -2,11 +2,7 @@
 <template>
   <li>
     <label>
-      <input 
-        type="checkbox" 
-        :checked="todoObj.done" 
-        @change="handleCheck(todoObj.id)"
-      />
+      <input type="checkbox" :checked="todoObj.done" @change="handleCheck(todoObj.id)" />
       <span>{{ todoObj.title }}</span>
     </label>
     <button class="btn btn-danger" @click="handleDelete(todoObj.id)">删除</button>
@@ -16,17 +12,21 @@
 <script>
 export default {
   name: 'MyItem',
-  props:['todoObj','checkTodo','deleteTodo'],
+  props: ['todoObj'],
   methods: {
     handleCheck(id) {
-      console.log('獲取所選到的id:',id)
-      this.checkTodo(id)
+      console.log('獲取所選到的id:', id)
+      // this.checkTodo(id)
+      // 觸發綁定事件
+      this.$bus.$emit('checkTodo', id)
     },
     handleDelete(id) {
       if (confirm('確定刪除嗎?')) {
-        console.log('獲取想刪除的id:',id)
+        console.log('獲取想刪除的id:', id)
+        // this.deleteTodo(id)
+        // 觸發綁定事件
+        this.$bus.$emit('deleteTodo', id)
       }
-      this.deleteTodo(id)
     }
   }
 }
@@ -72,7 +72,7 @@ li:hover {
   background-color: #ddd;
 }
 
-li:hover button{
+li:hover button {
   display: block;
 }
 </style>

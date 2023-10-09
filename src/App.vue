@@ -3,7 +3,7 @@
     <div class="todo-container">
       <div class="todo-wrap">
         <MyHeader :addTodo="addTodo" />
-        <MyList :todos="todos" :checkTodo="checkTodo" :deleteTodo="deleteTodo" />
+        <MyList :todos="todos"/>
         <MyFooter :todos="todos" :checkAllTodo="checkAllTodo" :clearAllTodo="clearAllTodo"/>
       </div>
     </div>
@@ -79,6 +79,16 @@ export default {
       console.log('清除完成')
     }
   },
+  mounted() {
+    // 綁定自定義事件
+    this.$bus.$on('checkTodo',this.checkTodo)
+    this.$bus.$on('deleteTodo',this.deleteTodo)
+  },
+  beforeDestroy() {
+    // 解綁自定義事件
+    this.$bus.$off('checkTodo')
+    this.$bus.$off('deleteTodo')
+  }
 }
 </script>
 
