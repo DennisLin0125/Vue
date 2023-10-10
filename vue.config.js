@@ -11,14 +11,14 @@ module.exports = defineConfig({
   // 第二種配置代理
   devServer: {
     proxy: {
-      '/students': {
+      '/api1': {
         target: 'http://localhost:5000',
-        ws: true,
+        pathRewrite: {'^/api1': ""},
         changeOrigin: true
       },
-      '/cars': {
-        target: 'http://localhost:5001',
-        ws: true,
+      '/api2': {
+        target: 'http://localhost:5000',
+        pathRewrite: {'^/api2': ""},
         changeOrigin: true
       },
     }
