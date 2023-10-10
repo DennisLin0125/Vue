@@ -1,11 +1,23 @@
 <template>
   <div class="row">
-    <div class="card" v-for="user in users" :key="user.id">
+    <!-- 展示用戶列表 -->
+    <div
+      class="card"
+      v-show="info.users.length"
+      v-for="user in info.users"
+      :key="user.id"
+    >
       <a :href="user.html_url" target="_blank">
         <img :src="user.avatar_url" style="width: 100px" />
       </a>
       <p class="card-text">{{ user.login }}</p>
     </div>
+    <!-- 展示歡迎詞 -->
+    <h1 v-show="info.isFirst">歡迎使用</h1>
+    <!-- 展示加載中 -->
+    <h1 v-show="info.isLoading">加載中...</h1>
+    <!-- 展示錯誤 -->
+    <h1 v-show="info.errMsg">{{ info.errMsg }}</h1>
   </div>
 </template>
 
@@ -14,19 +26,24 @@ export default {
   name: "userList",
   data() {
     return {
-      users: [],
+      info: {
+        isFirst: true,
+        isLoading: false,
+        errMsg: "",
+        users: [],
+      },
     };
   },
   mounted() {
     // 綁定自定義事件
-    this.$bus.$on("getUsers", (data) => {
-      console.log("我是List組件，收到了數據", data);
-      this.users = data;
+    this.$bus.$on("updateListData", (dataObj) => {
+      console.log("我是List組件，收到了數據", dataObj);
+      this.info = { ...this.info, ...dataObj };
     });
   },
   beforeDestroy() {
     // 移除綁定自定義
-    this.$bus.$off("getUsers");
+    this.$bus.$off("updateListData");
   },
 };
 </script>
