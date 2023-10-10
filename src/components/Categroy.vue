@@ -3,7 +3,8 @@
   <div class="categroty">
     <h3>{{ title }}分類</h3>
     <!-- 定義一個插槽給組件 -->
-    <slot>我是插槽默認值</slot>
+    <slot name="center">我是插槽center默認值</slot>
+    <slot name="footer">我是插槽footer默認值</slot>
   </div>
 </template>
 

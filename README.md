@@ -4,19 +4,26 @@
 
 2. 使用方式：
 
-## 預設插槽：
+## 具名插槽：
 
 ```vue
 父組件中：
 <Category>
-    <div>html結構1</div>
+    <template slot="center">
+        <div>html結構1</div>
+    </template>
+
+    <template v-slot:footer>
+        <div>html結構2</div>
+    </template>
 </Category>
 
 子組件中：
 <template>
     <div>
         <!-- 定義插槽 -->
-        <slot>插槽預設內容...</slot>
+        <slot name="center">插槽預設內容...</slot>
+        <slot name="footer">插槽預設內容...</slot>
     </div>
 </template>
 ```

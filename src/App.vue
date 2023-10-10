@@ -1,17 +1,38 @@
 <template>
   <div class="container">
     <Categroy title="美食">
-      <img src="https://s3.ax1x.com/2021/01/16/srJlq0.jpg" alt="logo" />
+      <img
+        slot="center"
+        src="https://s3.ax1x.com/2021/01/16/srJlq0.jpg"
+        alt="logo"
+      />
+      <a slot="footer" href="http://google.com">更多美食</a>
     </Categroy>
 
     <Categroy title="遊戲">
-      <ul>
+      <ul slot="center">
         <li v-for="(game, index) in games" :key="index">{{ game }}</li>
       </ul>
+      <div class="foot" slot="footer">
+        <a href="http://google.com">單機遊戲</a>
+        <a href="http://google.com">網路遊戲</a>
+      </div>
     </Categroy>
 
-    <Categroy title="電影"> 
-      <video controls src="http://clips.vorwaerts-gmbh.de/big_buck_bunny.mp4"></video>
+    <Categroy title="電影">
+      <video
+        slot="center"
+        controls
+        src="http://clips.vorwaerts-gmbh.de/big_buck_bunny.mp4"
+      ></video>
+      <template slot="footer">
+        <div class="foot">
+          <a href="http://google.com">經典</a>
+          <a href="http://google.com">熱門</a>
+          <a href="http://google.com">推薦</a>
+        </div>
+        <h4>歡迎前來觀看</h4>
+      </template>
     </Categroy>
   </div>
 </template>
@@ -32,7 +53,8 @@ export default {
 </script>
 
 <style scoped>
-.container {
+.container,
+.foot {
   display: flex;
   justify-content: space-around;
 }
@@ -40,5 +62,9 @@ export default {
 img,
 video {
   width: 100%;
+}
+
+h4 {
+  text-align: center;
 }
 </style>
