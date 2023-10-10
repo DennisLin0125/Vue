@@ -13,7 +13,6 @@
 </template>
   
 <script>
-import axios from "axios";
 export default {
   name: "userSearch",
   data() {
@@ -34,10 +33,8 @@ export default {
       if (!this.keyWord) {
         return alert("請輸入關鍵字");
       }
-      axios.defaults.baseURL = "http://localhost:8081";
-      // 發送網路請求  發送給代理伺服器
-      axios
-        .get(`/api1/search/users?q=${this.keyWord}`)
+      this.$http
+        .get(`http://localhost:8081/api1/search/users?q=${this.keyWord}`)
         .then((respones) => {
           // 請求成功更新數據
           console.log("請求成功");
