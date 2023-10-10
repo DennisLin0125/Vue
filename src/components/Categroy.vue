@@ -2,9 +2,7 @@
 <template>
   <div class="categroty">
     <h3>{{ title }}分類</h3>
-    <!-- 定義一個插槽給組件 -->
-    <slot name="center">我是插槽center默認值</slot>
-    <slot name="footer">我是插槽footer默認值</slot>
+    <slot :games="games">插槽默認</slot>
   </div>
 </template>
 
@@ -13,6 +11,11 @@ export default {
   // eslint-disable-next-line vue/multi-word-component-names
   name: "Categroy",
   props: ["title"],
+  data() {
+    return {
+      games: ["紅色警戒", "穿越火線", "勁舞團", "傳說對決"],
+    };
+  },
 };
 </script>
 
