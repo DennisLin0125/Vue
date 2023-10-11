@@ -1,18 +1,14 @@
 <template>
   <div>
-    
+    <Count/>
   </div>
 </template>
 
 <script>
-  export default {
-    name: 'App',
-    components: {
-
-    }
-  }
+import Count from './components/Count.vue'
+export default {
+  name: 'App',
+  components: {Count}
+}
 </script>
 
-<style>
-
-</style>
