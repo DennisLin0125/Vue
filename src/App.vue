@@ -8,7 +8,7 @@
 import Count from './components/Count.vue'
 export default {
   name: 'App',
-  components: {Count}
+  components: {Count},
 }
 </script>
 
