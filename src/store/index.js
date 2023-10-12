@@ -42,6 +42,8 @@ const mutations = {
 // 準備state用於存放數據
 const state = {
   sum: 0, //當前的和
+  school: '台灣大學',
+  subject: '前端'
 };
 
 // 用於將state的數據加工

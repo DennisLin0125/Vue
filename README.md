@@ -103,7 +103,9 @@ $store.state.sum
 ```js
 $store.dispatch('action中的方法名稱',資料)
 ``` 
+
 * 或
+
 ```js
 $store.commit('mutations中的方法名稱',資料) 
 ```
@@ -134,3 +136,63 @@ export default new Vuex.Store({
 ```js
 $store.getters.bigSum
 ```
+
+### 6.四個map方法的使用
+
+* `mapState`方法：用來幫助我們對應`state`中的資料為計算屬性
+
+```js
+computed: {
+    //透過mapState產生計算屬性：sum、school、subject（物件寫法）
+    ...mapState({sum:'sum',school:'school',subject:'subject'}),
+        
+    //透過mapState產生計算屬性：sum、school、subject（陣列寫法）
+    ...mapState(['sum','school','subject']),
+},
+```
+
+* `mapGetters`方法：用來幫助我們將`getters`中的資料映射為計算屬性
+
+```js
+computed: {
+    //利用mapGetters產生計算屬性：bigSum（物件寫法）
+    ...mapGetters({bigSum:'bigSum'}),
+
+    //利用mapGetters產生計算屬性：bigSum（陣列寫法）
+    ...mapGetters(['bigSum'])
+},
+```
+
+* `mapActions`方法：用來幫助我們產生與`actions`對話的方法，即：包含下列敘述的函數
+
+```js
+$store.dispatch(xxx)
+```
+
+```js
+methods:{
+    //靠mapActions生成：incrementOdd、incrementWait（物件形式）
+    ...mapActions({incrementOdd:'jiaOdd',incrementWait:'jiaWait'})
+
+    //靠mapActions產生：incrementOdd、incrementWait（陣列形式）
+    ...mapActions(['jiaOdd','jiaWait'])
+}
+```
+
+* `mapMutations`方法：用於幫助我們產生與`mutations`對話的方法，即：包含的函數
+
+```js
+$store.commit(xxx)
+```
+
+```js
+methods:{
+    //靠mapActions生成：increment、decrement（物件形式）
+    ...mapMutations({increment:'JIA',decrement:'JIAN'}),
+    
+    //靠mapMutations生成：JIA、JIAN（對象形式）
+    ...mapMutations(['JIA','JIAN']),
+}
+```
+
+> 備註：mapActions與mapMutations使用時，若需要傳遞參數需要：在範本中綁定事件時傳遞好參數，否則參數是事件物件。
