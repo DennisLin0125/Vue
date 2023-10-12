@@ -2,6 +2,7 @@
 <template>
   <div>
     <h1>當前求和為 : {{ $store.state.sum }}</h1>
+    <h3>當前求和放大10倍為 : {{ $store.getters.bigSum }}</h3>
     <select v-model.number="num">
       <option value="1">1</option>
       <option value="2">2</option>

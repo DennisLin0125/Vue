@@ -65,8 +65,8 @@ Vue.use(Vuex)
 
 const actions = {
     //在回應組件中加的動作
-    add(context,value){
-    // console.log('actions中的jia被呼叫了',miniStore,value)
+    add(miniStore,value){
+    // console.log('actions中的add被呼叫了',miniStore,value)
     context.commit('ADD',value)
     },
 }
@@ -74,7 +74,7 @@ const actions = {
 const mutations = {
     //執行加
     ADD(state,value){
-    // console.log('mutations中的JIA被呼叫了',state,value)
+    // console.log('mutations中的ADD被呼叫了',state,value)
     state.sum += value
     }
 }
