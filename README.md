@@ -65,15 +65,15 @@ Vue.use(Vuex)
 
 const actions = {
     //在回應組件中加的動作
-    jia(context,value){
+    add(context,value){
     // console.log('actions中的jia被呼叫了',miniStore,value)
-    context.commit('JIA',value)
+    context.commit('ADD',value)
     },
 }
 
 const mutations = {
     //執行加
-    JIA(state,value){
+    ADD(state,value){
     // console.log('mutations中的JIA被呼叫了',state,value)
     state.sum += value
     }
@@ -108,7 +108,7 @@ $store.dispatch('action中的方法名稱',資料)
 $store.commit('mutations中的方法名稱',資料) 
 ```
 
-    > 備註：若沒有網路請求或其他業務邏輯，元件中也可以越過actions，即不寫`dispatch`，直接寫`commit`
+* 備註：若沒有網路請求或其他業務邏輯，元件中也可以越過actions，即不寫`dispatch`，直接寫`commit`
 
 ### 5.getters的使用
 

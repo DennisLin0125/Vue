@@ -1,7 +1,7 @@
 <!-- eslint-disable vue/multi-word-component-names -->
 <template>
   <div>
-    <h1>當前求和為{{ sum }}</h1>
+    <h1>當前求和為 : {{ $store.state.sum }}</h1>
     <select v-model.number="num">
       <option value="1">1</option>
       <option value="2">2</option>
@@ -21,25 +21,20 @@ export default {
   data() {
     return {
       num: 1, //用戶所選數字
-      sum: 0,
     };
   },
   methods: {
     add() {
-      this.sum += this.num;
+      this.$store.commit('ADD', this.num);
     },
     sub() {
-      this.sum -= this.num;
+      this.$store.commit('SUB', this.num);
     },
     addWhenOdd() {
-      if (this.sum % 2 !== 0) {
-        this.sum += this.num;
-      }
+      this.$store.dispatch('addWhenOdd', this.num);
     },
     asyncAdd() {
-      setTimeout(() => {
-        this.sum += this.num;
-      }, 500);
+      this.$store.dispatch('asyncAdd', this.num);
     },
   },
 };
