@@ -4,7 +4,7 @@
     <h1>當前求和為 : {{ sum }}</h1>
     <h3>當前求和放大10倍為 : {{ bigSum }}</h3>
     <h3>我在{{ school }},學習{{ subject }}</h3>
-    <h3 style="color: red;">下方組件的總人數為 : {{ personList.length }}</h3>
+    <h3 style="color: red">下方組件的總人數為 : {{ personList.length }}</h3>
     <select v-model.number="num">
       <option value="1">1</option>
       <option value="2">2</option>
@@ -18,7 +18,7 @@
 </template>
 
 <script>
-import { mapState, mapGetters, mapMutations, mapActions } from 'vuex';
+import { mapState, mapGetters, mapMutations, mapActions } from "vuex";
 export default {
   // eslint-disable-next-line vue/multi-word-component-names
   name: "Count",
@@ -47,8 +47,9 @@ export default {
     // ...mapGetters({ bigSum: 'bigSum' })
 
     // 3.陣列寫法
-    ...mapState(['sum', 'school', 'subject','personList']),
-    ...mapGetters(['bigSum'])
+    ...mapState("countOptions", ["sum", "school", "subject"]),
+    ...mapState("personOptions", ["personList"]),
+    ...mapGetters("countOptions", ["bigSum"]),
   },
   methods: {
     // 基本寫法
@@ -69,11 +70,12 @@ export default {
     // ...mapMutations({ add: 'ADD', sub: 'SUB' }),
     // ...mapActions({ addWhenOdd: 'addWhenOdd', asyncAdd: 'asyncAdd' }),
     // 3.陣列寫法
-    ...mapMutations(['ADD','SUB']),
-    ...mapActions(['addWhenOdd','asyncAdd']),
+    ...mapMutations("countOptions", ["ADD", "SUB"]),
+    ...mapActions("countOptions", ["addWhenOdd", "asyncAdd"]),
   },
   mounted() {
-  }
+    console.log(this);
+  },
 };
 </script>
 
