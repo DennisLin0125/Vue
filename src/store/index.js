@@ -7,14 +7,14 @@ import Vuex from "vuex"; // npm install vuex@3.6.2
 Vue.use(Vuex);
 // 準備actions用於響應組件中的動作
 const actions = {
-    // add(miniStore, value) {
-    //   console.log("01:actions 中的add被調用了", miniStore, value);
-    //   miniStore.commit("ADD", value);
-    // },
-    // sub(miniStore, value) {
-    //   console.log("01:actions 中的sub被調用了", miniStore, value);
-    //   miniStore.commit("SUB", value);
-    // },
+  // add(miniStore, value) {
+  //   console.log("01:actions 中的add被調用了", miniStore, value);
+  //   miniStore.commit("ADD", value);
+  // },
+  // sub(miniStore, value) {
+  //   console.log("01:actions 中的sub被調用了", miniStore, value);
+  //   miniStore.commit("SUB", value);
+  // },
   addWhenOdd(miniStore, value) {
     console.log("01:actions 中的addWhenOdd被調用了", miniStore, value);
     if (miniStore.state.sum % 2 !== 0) {
@@ -38,12 +38,19 @@ const mutations = {
     console.log("02:mutations 中的SUB被調用了", state, value);
     state.sum -= value;
   },
+  ADD_PERSON(state, personObj){
+    console.log("02:mutations 中的ADD_PERSON被調用了", state, personObj);
+    state.personList.unshift(personObj)
+  }
 };
 // 準備state用於存放數據
 const state = {
   sum: 0, //當前的和
   school: '台灣大學',
-  subject: '前端'
+  subject: '前端',
+  personList: [
+    { id: '001', name: 'Dennis' }
+  ]
 };
 
 // 用於將state的數據加工
