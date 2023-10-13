@@ -110,7 +110,7 @@ $store.dispatch('action中的方法名稱',資料)
 $store.commit('mutations中的方法名稱',資料) 
 ```
 
-* 備註：若沒有網路請求或其他業務邏輯，元件中也可以越過actions，即不寫`dispatch`，直接寫`commit`
+> 備註：若沒有網路請求或其他業務邏輯，元件中也可以越過actions，即不寫`dispatch`，直接寫`commit`
 
 ### 5.getters的使用
 
@@ -171,11 +171,11 @@ $store.dispatch(xxx)
 
 ```js
 methods:{
-    //靠mapActions生成：incrementOdd、incrementWait（物件形式）
-    ...mapActions({incrementOdd:'jiaOdd',incrementWait:'jiaWait'})
+    //靠mapActions生成：addWhenOdd、asyncAdd（物件形式）
+    ...mapActions({ addWhenOdd: 'addWhenOdd', asyncAdd: 'asyncAdd' }),
 
-    //靠mapActions產生：incrementOdd、incrementWait（陣列形式）
-    ...mapActions(['jiaOdd','jiaWait'])
+    //靠mapActions產生：addWhenOdd、asyncAdd（陣列形式）
+    ...mapActions(['addWhenOdd','asyncAdd']),
 }
 ```
 
@@ -187,11 +187,11 @@ $store.commit(xxx)
 
 ```js
 methods:{
-    //靠mapActions生成：increment、decrement（物件形式）
-    ...mapMutations({increment:'JIA',decrement:'JIAN'}),
+    //靠mapActions生成：add、sub（物件形式）
+    ...mapMutations({ add: 'ADD', sub: 'SUB' }),
     
-    //靠mapMutations生成：JIA、JIAN（對象形式）
-    ...mapMutations(['JIA','JIAN']),
+    //靠mapMutations生成：ADD、SUB（陣列形式）
+    ...mapMutations(['ADD','SUB']),
 }
 ```
 

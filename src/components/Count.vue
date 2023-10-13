@@ -9,15 +9,15 @@
       <option value="2">2</option>
       <option value="3">3</option>
     </select>
-    <button @click="add">+</button>
-    <button @click="sub">-</button>
-    <button @click="addWhenOdd">當前求和為基數在加</button>
-    <button @click="asyncAdd">非同步加</button>
+    <button @click="ADD(num)">+</button>
+    <button @click="SUB(num)">-</button>
+    <button @click="addWhenOdd(num)">當前求和為基數在加</button>
+    <button @click="asyncAdd(num)">非同步加</button>
   </div>
 </template>
 
 <script>
-import { mapState, mapGetters } from 'vuex';
+import { mapState, mapGetters, mapMutations, mapActions } from 'vuex';
 export default {
   // eslint-disable-next-line vue/multi-word-component-names
   name: "Count",
@@ -50,18 +50,26 @@ export default {
     ...mapGetters(['bigSum'])
   },
   methods: {
-    add() {
-      this.$store.commit('ADD', this.num);
-    },
-    sub() {
-      this.$store.commit('SUB', this.num);
-    },
-    addWhenOdd() {
-      this.$store.dispatch('addWhenOdd', this.num);
-    },
-    asyncAdd() {
-      this.$store.dispatch('asyncAdd', this.num);
-    },
+    // 基本寫法
+    // add() {
+    //   this.$store.commit('ADD', this.num);
+    // },
+    // sub() {
+    //   this.$store.commit('SUB', this.num);
+    // },
+    // addWhenOdd() {
+    //   this.$store.dispatch('addWhenOdd', this.num);
+    // },
+    // asyncAdd() {
+    //   this.$store.dispatch('asyncAdd', this.num);
+    // },
+
+    // 2.借助mapMutations生成methods,會自動commit去聯繫mapMutations(json寫法)
+    // ...mapMutations({ add: 'ADD', sub: 'SUB' }),
+    // ...mapActions({ addWhenOdd: 'addWhenOdd', asyncAdd: 'asyncAdd' }),
+    // 3.陣列寫法
+    ...mapMutations(['ADD','SUB']),
+    ...mapActions(['addWhenOdd','asyncAdd']),
   },
   mounted() {
     const x = mapState({ sum: 'sum', school: 'school', subject: 'subject' })

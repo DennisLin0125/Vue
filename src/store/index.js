@@ -7,14 +7,14 @@ import Vuex from "vuex"; // npm install vuex@3.6.2
 Vue.use(Vuex);
 // 準備actions用於響應組件中的動作
 const actions = {
-  //   add(miniStore, value) {
-  //     console.log("01:actions 中的add被調用了", miniStore, value);
-  //     miniStore.commit("ADD", value);
-  //   },
-  //   sub(miniStore, value) {
-  //     console.log("01:actions 中的sub被調用了", miniStore, value);
-  //     miniStore.commit("SUB", value);
-  //   },
+    // add(miniStore, value) {
+    //   console.log("01:actions 中的add被調用了", miniStore, value);
+    //   miniStore.commit("ADD", value);
+    // },
+    // sub(miniStore, value) {
+    //   console.log("01:actions 中的sub被調用了", miniStore, value);
+    //   miniStore.commit("SUB", value);
+    // },
   addWhenOdd(miniStore, value) {
     console.log("01:actions 中的addWhenOdd被調用了", miniStore, value);
     if (miniStore.state.sum % 2 !== 0) {
