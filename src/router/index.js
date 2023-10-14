@@ -13,6 +13,7 @@ import Detial from "../pages/Detial.vue";
 
 // 創建並暴露一個路由器
 const router = new VueRouter({
+  mode: 'history',
   routes: [
     {
       name: "default",
