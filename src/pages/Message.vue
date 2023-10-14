@@ -9,7 +9,7 @@
         <router-link
           :to="{
             name: 'embedURL',
-            params: {
+            query: {
               id: item.id,
               title: item.title,
             },

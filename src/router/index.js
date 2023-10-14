@@ -33,8 +33,25 @@ export default new VueRouter({
           children: [
             {
               name: "embedURL",
-              path: "detial/:id/:title",
+              path: "detial",
               component: Detial,
+
+              // props第一種寫法,此寫法會傳給Detial組件
+              // props: {
+              //   a:1,
+              //   b:'hello'
+              // }
+
+              // props第二種寫法,若為真,就會把該組件收到的props傳給該組件,但是query參數無效
+              // props: true,
+
+              // props第三種寫法,函數
+              props($route) {
+                return {
+                  id: $route.query.id,
+                  title: $route.query.title
+                }
+              }
             },
           ],
         },

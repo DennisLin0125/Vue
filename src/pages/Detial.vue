@@ -1,8 +1,8 @@
 <!-- eslint-disable vue/multi-word-component-names -->
 <template>
   <ul>
-    <li>消息編號: {{ $route.params.id }}</li>
-    <li>消息標題: {{ $route.params.title }}</li>
+    <li>消息編號: {{ id }}</li>
+    <li>消息標題: {{ title }}</li>
   </ul>
 </template>
 
@@ -12,7 +12,8 @@ export default {
     name:'Detial',
     mounted(){
         console.log(this.$route)
-    }
+    },
+    props: ['id','title']
 }
 </script>
 
