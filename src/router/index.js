@@ -5,8 +5,8 @@
 // 引入Vue-router
 import VueRouter from 'vue-router'  // npm install vue-router@3.5.2
 
-import About from '../components/About.vue'
-import Home from '../components/Home.vue'
+import About from '../pages/About.vue'
+import Home from '../pages/Home.vue'
 
 
 // 創建並暴露一個路由器
