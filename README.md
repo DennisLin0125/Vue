@@ -266,3 +266,31 @@ $route.params.title
 ```js
 <router-link replace .......>News</router-link>
 ```
+
+### 9.編程式路由導航
+
+1. 作用：不借助`<router-link>`實現路由跳轉，讓路由跳轉更有彈性
+
+2. 具體編碼：
+
+```js
+//$router的兩個API
+this.$router.push({
+    name:'test',
+    query:{
+        id:xxx,
+        title:xxx
+    }
+})
+
+this.$router.replace({
+    name:'test',
+    query:{
+        id:xxx,
+        title:xxx
+    }
+})
+this.$router.forward() //前進
+this.$router.back() //後退
+this.$router.go() //可前進也可後退
+```

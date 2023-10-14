@@ -17,6 +17,8 @@
         >
           {{ item.title }}
         </router-link>
+        <button @click="pushShow(item)">push查看</button>
+        <button @click="replaceShow(item)">replace查看</button>
       </li>
     </ul>
     <hr />
@@ -36,6 +38,26 @@ export default {
         { id: "003", title: "消息003" },
       ],
     };
+  },
+  methods: {
+    pushShow(item) {
+      this.$router.push({
+        name: "embedURL",
+        query: {
+          id: item.id,
+          title: item.title,
+        },
+      });
+    },
+    replaceShow(item) {
+      this.$router.replace({
+        name: "embedURL",
+        query: {
+          id: item.id,
+          title: item.title,
+        },
+      });
+    },
   },
 };
 </script>
