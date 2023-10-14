@@ -3,22 +3,33 @@
  */
 
 // 引入Vue-router
-import VueRouter from 'vue-router'  // npm install vue-router@3.5.2
+import VueRouter from "vue-router"; // npm install vue-router@3.5.2
 
-import About from '../pages/About.vue'
-import Home from '../pages/Home.vue'
-
+import About from "../pages/About.vue";
+import Home from "../pages/Home.vue";
+import News from "../pages/News.vue";
+import Message from "../pages/Message.vue";
 
 // 創建並暴露一個路由器
 export default new VueRouter({
-    routes: [
+  routes: [
+    {
+      path: "/about",
+      component: About,
+    },
+    {
+      path: "/home",
+      component: Home,
+      children: [
         {
-            path: '/about',
-            component: About
+          path: "news",
+          component: News,
         },
         {
-            path: '/home',
-            component: Home
+          path: "message",
+          component: Message,
         },
-    ]
-})
+      ],
+    },
+  ],
+});
