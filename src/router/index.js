@@ -15,6 +15,7 @@ import Detial from "../pages/Detial.vue";
 export default new VueRouter({
   routes: [
     {
+      name: "default",
       path: "/about",
       component: About,
     },
@@ -31,6 +32,7 @@ export default new VueRouter({
           component: Message,
           children: [
             {
+              name: "embedURL",
               path: "detial",
               component: Detial,
             },

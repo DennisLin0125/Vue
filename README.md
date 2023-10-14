@@ -122,3 +122,53 @@ routes:[
 $route.query.id
 $route.query.title
 ```
+
+### 5.命名路由
+
+1. 作用：可以簡化路由的跳轉。
+
+2. 如何使用
+
+* 為路由命名：
+
+```js
+{
+    path:'/demo',
+    component:Demo,
+    children:[
+        {
+            path:'test',
+            component:Test,
+            children:[
+                {
+                    name:'hello' //為路由命名
+                    path:'welcome',
+                    component:Hello,
+                }
+            ]
+        }
+    ]
+}
+```
+
+2. 簡化跳轉：
+
+```vue
+<!--簡化前，需要寫出完整的路徑 -->
+<router-link to="/demo/test/welcome">跳轉</router-link>
+
+<!--簡化後，直接透過名字跳轉 -->
+<router-link :to="{name:'hello'}">跳轉</router-link>
+
+<!--簡化寫法配合傳遞參數 -->
+<router-link
+    :to="{
+        name:'hello',
+        query:{
+            id:666,
+            title:'你好'
+        }
+    }"
+    >跳轉
+</router-link>
+```

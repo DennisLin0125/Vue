@@ -4,18 +4,19 @@
       <li v-for="item in messageList" :key="item.id">
         <!-- 第一種寫法:跳轉路由並協帶參數 -->
         <!-- <router-link :to="`/home/message/detial?id=${item.id}&title=${item.title}`">{{ item.title }}</router-link> -->
-        
+
         <!-- 第二種寫法 -->
-        <router-link :to="{
-          path: '/home/message/detial',
-          query: {
-            id:item.id,
-            title: item.title
-          }
-        }">
+        <router-link
+          :to="{
+            name: 'embedURL',
+            query: {
+              id: item.id,
+              title: item.title,
+            },
+          }"
+        >
           {{ item.title }}
         </router-link>
-
       </li>
     </ul>
     <hr />
