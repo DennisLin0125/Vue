@@ -9,6 +9,7 @@ import About from "../pages/About.vue";
 import Home from "../pages/Home.vue";
 import News from "../pages/News.vue";
 import Message from "../pages/Message.vue";
+import Detial from "../pages/Detial.vue";
 
 // 創建並暴露一個路由器
 export default new VueRouter({
@@ -28,6 +29,12 @@ export default new VueRouter({
         {
           path: "message",
           component: Message,
+          children: [
+            {
+              path: "detial",
+              component: Detial,
+            },
+          ],
         },
       ],
     },
