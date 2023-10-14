@@ -306,3 +306,11 @@ this.$router.go() //可前進也可後退
     <router-view></router-view>
 </keep-alive>
 ```
+
+### 11.兩個新的生命週期鉤子
+
+1. 作用：路由組件獨有的兩個鉤子，用於捕捉路由組件的啟動狀態。
+2. 具體名字：
+
+* `activated`路由元件啟動時觸發。
+* `deactivated`路由元件失活時觸發。
