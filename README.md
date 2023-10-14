@@ -102,7 +102,7 @@ $store.state.sum
 
 ```js
 $store.dispatch('action中的方法名稱',資料)
-``` 
+```
 
 * 或
 
@@ -204,7 +204,7 @@ methods:{
 2. 修改`store.js`
 
 ```javascript
-const countAbout = {
+const countOptions = {
     namespaced:true,//開啟命名空間
     state:{x:1},
     mutations: { ... },
@@ -216,7 +216,7 @@ const countAbout = {
     }
 }
 
-const personAbout = {
+const personOptions = {
     namespaced:true,//開啟命名空間
     state:{ ... },
     mutations: { ... },
@@ -225,8 +225,8 @@ const personAbout = {
 
 const store = new Vuex.Store({
     modules: {
-    countAbout,
-    personAbout
+        countAbout,
+        personAbout
     }
 })
 ```
@@ -237,7 +237,7 @@ const store = new Vuex.Store({
 //方式一：自己直接讀取
 this.$store.state.personAbout.list
 //方式二：借助mapState讀取：
-...mapState('countOptions',['sum','school','subject']),
+...mapState('personOptions',['personList']),
 ```
 
 4. 開啟命名空間後，元件中讀取getters資料：
@@ -246,7 +246,7 @@ this.$store.state.personAbout.list
 //方式一：自己直接讀取
 this.$store.getters['personOptions/firstPersonName']
 //方式二：借助mapGetters讀取：
-...mapGetters('countOptions',['bigSum'])
+...mapGetters('personOptions',['firstPersonName'])
 ```
 
 5. 開啟命名空間後，元件中呼叫dispatch
