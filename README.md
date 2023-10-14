@@ -314,3 +314,65 @@ this.$router.go() //可前進也可後退
 
 * `activated`路由元件啟動時觸發。
 * `deactivated`路由元件失活時觸發。
+
+### 12.路由守衛
+
+1. 作用：對路由進行權限控制
+
+2. 分類：全域守衛、獨享守衛、組件內守衛
+
+3. 全域守衛:
+
+```js
+//全域前置守衛：初始化時執行、每次路由切換前執行
+router.beforeEach((to,from,next)=>{
+    console.log('beforeEach',to,from)
+    if(to.meta.isAuth){ //判斷目前路由是否需要進行權限控制
+        if(localStorage.getItem('school') === 'atguigu'){ //權限控制的特定規則
+            next() //放行
+        }else{
+            alert('暫無權限查看')
+        }
+    }else{
+        next() //放行
+    }
+})
+
+//全域後置守衛：初始化時執行、每次路由切換後執行
+router.afterEach((to,from)=>{
+    console.log('afterEach',to,from)
+    if(to.meta.title){
+        document.title = to.meta.title //修改網頁的title
+    }else{
+        document.title = 'vue_test'
+    }
+})
+```
+
+4. 獨享守衛:
+
+```js
+beforeEnter(to,from,next){
+    console.log('beforeEnter',to,from)
+    if(to.meta.isAuth){ //判斷目前路由是否需要進行權限控制
+        if(localStorage.getItem('school') === 'atguigu'){
+            next()
+        }else{
+            alert('暫無權限查看')
+        }
+    }else{
+        next()
+    }
+}
+```
+
+5. 組件內守衛：
+
+```js
+//進入守衛：透過路由規則，進入該元件時被調用
+beforeRouteEnter (to, from, next) {
+},
+//離開守衛：透過路由規則，離開該元件時被調用
+beforeRouteLeave (to, from, next) {
+}
+```
