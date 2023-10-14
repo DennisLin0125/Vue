@@ -37,6 +37,18 @@ const router = new VueRouter({
           meta: {
             isAuth: true,
             title: '新聞'
+          },
+          // 獨享路由守衛
+          beforeEnter: (to, from, next) => {
+            if (to.meta.isAuth) {
+              if (localStorage.getItem('user') === 'dennis') {
+                next()
+              } else {
+                return alert('無權限查看')
+              }
+            } else {
+              next()
+            }
           }
         },
         {
@@ -80,21 +92,21 @@ const router = new VueRouter({
 });
 
 // 全局前置 路由守衛
-router.beforeEach((to, from, next) => {
-  if (to.meta.isAuth) {
-    if (localStorage.getItem('user') === 'dennis') {
-      next()
-    }else{
-      return alert('無權限查看')
-    }
-  }else{
-    next()
-  }
-})
+// router.beforeEach((to, from, next) => {
+//   if (to.meta.isAuth) {
+//     if (localStorage.getItem('user') === 'dennis') {
+//       next()
+//     }else{
+//       return alert('無權限查看')
+//     }
+//   }else{
+//     next()
+//   }
+// })
 
 // 後置路由守衛
-router.afterEach((to, from) => {
-  console.log(to, from)
-  document.title = to.meta.title || '學習系統'
-})
+// router.afterEach((to, from) => {
+//   console.log(to, from)
+//   document.title = to.meta.title || '學習系統'
+// })
 export default router;
