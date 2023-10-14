@@ -33,7 +33,7 @@ export default new VueRouter({
           children: [
             {
               name: "embedURL",
-              path: "detial",
+              path: "detial/:id/:title",
               component: Detial,
             },
           ],

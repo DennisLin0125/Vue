@@ -172,3 +172,58 @@ $route.query.title
     >跳轉
 </router-link>
 ```
+
+### 6.路由的params參數
+
+1. 設定路由，聲明接收params參數
+
+```js
+{
+    path:'/home',
+    component:Home,
+    children:[
+        {
+            path:'news',
+            component:News
+        },
+        {
+            component:Message,
+            children:[
+                {
+                    name:'default',
+                    path:'detail/:id/:title', //使用佔位符宣告接收params參數
+                    component:Detail
+                }
+            ]
+        }
+    ]
+}
+```
+
+2. 傳遞參數
+
+```vue
+<!-- 跳轉並攜帶params參數，to的字串寫法 -->
+<router-link :to="/home/message/detail/666/你好">跳轉</router-link>
+
+<!-- 跳轉並攜帶params參數，to的物件寫法 -->
+<router-link
+    :to="{
+        name:'default',
+        params:{
+            id:666,
+            title:'你好'
+        }
+    }"
+    >跳轉
+</router-link>
+```
+
+> 特別注意：當路由攜帶params參數時，若使用to的物件寫法，則不能使用path配置項，必須使用name配置！
+
+3. 接收參數：
+
+```js
+$route.params.id
+$route.params.title
+```
