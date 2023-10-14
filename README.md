@@ -1,0 +1,57 @@
+## 路由
+
+1. 理解： 一個路由（route）就是一組映射關係（key - value），多個路由需要路由器（router）來管理。
+2. 前端路由：key是路徑，value是元件。
+
+### 1.基本使用
+
+1. 安裝vue-router，指令：
+
+```bash
+npm install vue-router@3.5.2
+```
+
+2. 應用程式插件：
+
+```js
+Vue.use(VueRouter)
+```
+
+3. 編寫router設定項:
+
+```js
+//引進VueRouter
+import VueRouter from 'vue-router'
+//引入Luyou 組件
+import About from '../components/About'
+import Home from '../components/Home'
+
+//建立router實例對象，去管理一組一組的路由規則
+const router = new VueRouter({
+    routes:[
+        {
+            path:'/about',
+            component:About
+        },
+        {
+            path:'/home',
+            component:Home
+        }
+    ]
+})
+
+//暴露router
+export default router
+```
+
+4. 實現切換（active-class可配置高亮樣式）
+
+```vue
+<router-link active-class="active" to="/about">About</router-link>
+```
+
+5. 指定展示位置
+
+```vue
+<router-view></router-view>
+```
