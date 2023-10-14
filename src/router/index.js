@@ -19,7 +19,8 @@ const router = new VueRouter({
       path: "/about",
       component: About,
       meta: {
-        title: '關於'
+        title: '關於',
+        isAuth: true,
       }
     },
     {
@@ -39,17 +40,17 @@ const router = new VueRouter({
             title: '新聞'
           },
           // 獨享路由守衛
-          beforeEnter: (to, from, next) => {
-            if (to.meta.isAuth) {
-              if (localStorage.getItem('user') === 'dennis') {
-                next()
-              } else {
-                return alert('無權限查看')
-              }
-            } else {
-              next()
-            }
-          }
+          // beforeEnter: (to, from, next) => {
+          //   if (to.meta.isAuth) {
+          //     if (localStorage.getItem('user') === 'dennis') {
+          //       next()
+          //     } else {
+          //       return alert('無權限查看')
+          //     }
+          //   } else {
+          //     next()
+          //   }
+          // }
         },
         {
           name: "myMessage",
