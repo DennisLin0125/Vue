@@ -151,7 +151,7 @@ $route.query.title
 }
 ```
 
-2. 簡化跳轉：
+* 簡化跳轉：
 
 ```vue
 <!--簡化前，需要寫出完整的路徑 -->
@@ -161,7 +161,7 @@ $route.query.title
 <router-link :to="{name:'hello'}">跳轉</router-link>
 
 <!--簡化寫法配合傳遞參數 -->
-<router-link
+<router-link 
     :to="{
         name:'hello',
         query:{
